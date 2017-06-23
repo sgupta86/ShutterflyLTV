@@ -1,2 +1,0 @@
-# ShutterflyLTV
-Shutterfly LTV Code
