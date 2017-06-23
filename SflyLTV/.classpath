@@ -4,10 +4,6 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 	<classpathentry kind="lib" path="/Users/saurav/Downloads/json-1.5-20090211.jar"/>
 	<classpathentry kind="lib" path="/Users/saurav/Downloads/quick-json-1.0.2.3.jar"/>
-	<classpathentry kind="lib" path="/Users/saurav/Downloads/commons-pool2-2.4.2-javadoc.jar"/>
-	<classpathentry kind="lib" path="/Users/saurav/Downloads/commons-pool2-2.4.2.jar"/>
 	<classpathentry kind="lib" path="/Users/saurav/Downloads/gson-2.6.2.jar"/>
-	<classpathentry kind="lib" path="/Users/saurav/Downloads/jedis-2.9.0 (1).jar"/>
-	<classpathentry kind="lib" path="/Users/saurav/Downloads/lettuce-4.3.0.Final.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

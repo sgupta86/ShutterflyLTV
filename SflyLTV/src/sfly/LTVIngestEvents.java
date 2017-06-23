@@ -64,7 +64,7 @@ public class LTVIngestEvents {
 			D.TotalSiteVisit.put(custId, 1);
 		else {
 			int curTotalSiteVisit = D.TotalSiteVisit.get(custId);
-			D.TotalSiteVisit.put(custId,curTotalSiteVisit);
+			D.TotalSiteVisit.put(custId,curTotalSiteVisit+1);
 		}
 		
 		String siteKey = event.get("type").getAsString();
@@ -124,11 +124,14 @@ public class LTVIngestEvents {
 	 * @param D
 	 * @throws ParseException
 	 * Updates the Customer attributes into in-memory Data Structure D
+	 * Handles the Case of "NEW" event as if it is a new event and already exists,
+	 * that means UPDATE event has arrived before NEW and assumption is UPDATE event
+	 * will have latest event time compared to "NEW"
 	 */
 	private void updateCustomer(JsonObject event,EventsList D) throws ParseException {
 		
 		custId = event.get("key").getAsString();
-		
+				
 		if(!D.CustomersList.containsKey(custId)){
 			Customer customer = new Customer();
 			customer.setKey(event.get("key").getAsString());
@@ -159,6 +162,9 @@ public class LTVIngestEvents {
 	 * @param D
 	 * @throws ParseException
 	 * Updates the order details for the Customer into in-memory Data Structure D
+	 *  Handles the Case of "NEW" event as if it is a new event and already exists,
+	 * that means UPDATE event has arrived before NEW and assumption is UPDATE event
+	 * will have latest event time compared to "NEW"
 	 */
 	private void updateOrder(JsonObject event, EventsList D) throws ParseException {
 		
@@ -204,6 +210,8 @@ public class LTVIngestEvents {
 	private void updateImage( JsonObject event, EventsList D) throws ParseException {
 		
 		custId = event.get("customer_id").getAsString();
+		
+		if(!D.ImageUploadList.containsKey(event.get("key").getAsString())){
 		ImageUpload imgUpload = new ImageUpload();
 		imgUpload.setKey(event.get("key").getAsString());
 		imgUpload.setCustomer_id(custId);
@@ -211,5 +219,6 @@ public class LTVIngestEvents {
 		imgUpload.setCameraModel(event.get("camera_model").getAsString());
 		imgUpload.setEvent_time(sdf.parse(event.get("event_time").getAsString()));
 		D.ImageUploadList.put(event.get("key").getAsString(), imgUpload);
+		}
 	}
 }

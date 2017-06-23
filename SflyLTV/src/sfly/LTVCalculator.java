@@ -40,11 +40,26 @@ public class LTVCalculator {
 			
 			Date MaxTime = D.MaxEventDate;
 			Date MinTime = D.EventDurationList.get(custId);
+			System.out.println(MaxTime);
+			System.out.println(MinTime);
 			double duration = (MaxTime.getTime()-MinTime.getTime())/(1000*60*60*24);
+				
+			double num1 = duration%7;
+			double num2 = (int)(duration/7);
+			if(num1 >0){
+				num2 = num2 + 1;
+			}else if((int)num1 ==0){
+				
+				if(!(MinTime.getDay() == 0 && MaxTime.getDay() == 6))
+					num2 = num2 + 1;
+			}
+		
+			duration = num2;
+			
 			double valPerWeek = (expPerVisit)*(totalVisits/((duration==0)? 1 : duration));
 			double user_ltv = 52*valPerWeek*10;
 			userLTV.put(custId, user_ltv);
-			System.out.println("CustId ::" + custId + "LTV ::" + user_ltv+ "  totalExp ::"+ totalExp+ "  totalVisits::"+totalVisits + "  expPerVisit::" +expPerVisit + "  duration::"+duration); 			
+			System.out.println("CustId ::" + custId + "  LTV ::" + user_ltv+ "  totalExp ::"+ totalExp+ "  totalVisits::"+totalVisits + "  expPerVisit::" +expPerVisit + "  duration::"+duration); 			
 		}
 		
 		try{

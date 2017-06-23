@@ -23,13 +23,13 @@ public class LTVMain {
 	public static void main(String[] args) throws ParseException{
 		
 		//Reading the events file
-		String inputFile = "./input/file3.txt";
+		String inputFile = "./input/events.txt";
 		try(BufferedReader br = new BufferedReader(new FileReader(inputFile))) {
 			StringBuilder sb = new StringBuilder();
 			String line = br.readLine();
 
-		    while (line != null) {
-		        sb.append(line);
+		    while (line != null) {		    	
+		        sb.append(line);		       
 		        sb.append(System.lineSeparator());
 		        line = br.readLine();
 		    }
